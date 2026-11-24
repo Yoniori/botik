@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>בוטיק | סוכני AI לעסקים</title>
+<meta name="description" content="אני יונתן. בודק כל יום כלי AI אחד, ובונה סוכני AI בהתאמה אישית לעסקים קטנים. שיחת היכרות של 20 דקות, בחינם.">
+<meta name="theme-color" content="#17122B">
+<!--
+  טיוטה. להשלים לפני העלאה (חפשו "להשלים"):
+  1. קישור לקביעת שיחה, או מספר וואטסאפ (href של הכפתורים עם class="todo").
+  2. לאשר: "20 דקות, בחינם ובלי התחייבות" (מתוך BRAND.md).
+  3. להוריד את פס הטיוטה (class="draft-bar").
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#17122B; --plum-2:#241C40; --coral:#FF6A3D; --coral-dark:#D94A22;
+  --cyan:#5CF2FF; --tape:#FFD23F; --paper:#F3EFFA; --line:#D9D0EC;
+  --muted-dark:#B9B0D3; --muted-light:#5A5275;
+  --f:"Rubik","Heebo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--f);background:var(--paper);color:var(--plum);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+bdi,.ltr{direction:ltr;unicode-bidi:isolate}
+
+/* draft bar */
+.draft-bar{background:var(--tape);color:var(--plum);font-size:14px;font-weight:500;text-align:center;padding:8px 16px}
+
+/* header */
+header.top{background:var(--plum);color:var(--paper)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:20px}
+.logo svg{width:34px;height:34px}
+.logo small{font-weight:500;font-size:14px;color:var(--muted-dark)}
+.ig{font-size:15px;color:var(--cyan);text-decoration:none;font-weight:500}
+.ig:hover{text-decoration:underline}
+
+/* hero */
+.hero{background:var(--plum);color:var(--paper);overflow:hidden;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:32px;padding-top:48px;padding-bottom:72px}
+.eyebrow{display:inline-block;background:var(--plum-2);color:var(--cyan);font-weight:500;font-size:14px;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.1;font-weight:900;letter-spacing:-.5px;margin-bottom:18px}
+h1 em{font-style:normal;color:var(--coral)}
+.lede{font-size:clamp(17px,2.2vw,20px);color:#E4DDF5;max-width:34em;margin-bottom:28px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:14px;font-weight:700;font-size:17px;text-decoration:none;border:2px solid transparent;transition:transform .15s ease,background .15s ease}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--coral);color:#fff}
+.btn-primary:hover{background:var(--coral-dark)}
+.btn-ghost{border-color:#4A3F70;color:var(--paper)}
+.btn-ghost:hover{border-color:var(--cyan)}
+.btn-light{border-color:var(--line);color:var(--plum);background:#fff}
+.btn-light:hover{border-color:var(--coral)}
+.todo{position:relative}
+.todo-tag{display:block;font-size:12px;font-weight:500;color:var(--tape);margin-top:6px}
+.on-light .todo-tag{color:#8A6A00}
+.hero-art{display:flex;justify-content:center}
+.hero-art svg{width:min(300px,70vw);height:auto;filter:drop-shadow(0 24px 40px rgba(0,0,0,.35))}
+.tape-strip{position:absolute;inset-inline:0;bottom:0;height:16px;background:repeating-linear-gradient(90deg,var(--tape) 0 22px,#E8BC2A 22px 24px);opacity:.95}
+
+/* sections */
+section{padding:64px 0}
+h2{font-size:clamp(26px,4vw,38px);line-height:1.2;font-weight:800;margin-bottom:14px}
+.sub{color:var(--muted-light);max-width:40em;margin-bottom:32px;font-size:18px}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.card h3{font-size:19px;font-weight:700;margin-bottom:6px}
+.card p{color:var(--muted-light);font-size:16px}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;background:var(--paper)}
+.ico svg{width:24px;height:24px;stroke:var(--coral);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.what{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.what p{font-size:18px;margin-bottom:14px}
+.note{background:#fff;border-inline-start:5px solid var(--cyan);border-radius:14px;padding:18px 20px;font-size:16px}
+.note strong{display:block;margin-bottom:4px}
+
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{background:var(--plum);color:var(--paper);border-radius:18px;padding:24px;position:relative}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--coral);color:#fff;font-weight:800;margin-bottom:14px}
+.step h3{font-size:19px;margin-bottom:6px}
+.step p{color:var(--muted-dark);font-size:16px}
+
+.guides .card{text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:border-color .15s ease,transform .15s ease}
+.guides .card:hover{border-color:var(--coral);transform:translateY(-2px)}
+.kw{align-self:flex-start;background:var(--tape);color:var(--plum);font-weight:700;font-size:14px;padding:3px 10px;border-radius:999px}
+.more{margin-top:auto;padding-top:8px;color:var(--coral-dark);font-weight:700;font-size:15px}
+
+.final{background:var(--plum);color:var(--paper);text-align:center}
+.final .sub{color:var(--muted-dark);margin-inline:auto}
+.final .ctas{justify-content:center}
+
+footer{background:var(--plum);color:var(--muted-dark);font-size:14px;border-top:1px solid var(--plum-2)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding-top:20px;padding-bottom:28px}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;padding-top:32px;padding-bottom:56px}
+  .hero-art{order:-1}
+  .hero-art svg{width:150px}
+  .g4{grid-template-columns:1fr 1fr}
+  .g3,.steps,.what{grid-template-columns:1fr}
+}
+@media (max-width:420px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .g4{grid-template-columns:1fr}
+  section{padding:48px 0}
+  .ctas .btn{width:100%}
+  .logo small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="draft-bar">טיוטה: הכפתורים לקביעת שיחה עוד לא מחוברים</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#boti-head"/></svg>
+      בוטיק <small>סוכני AI לעסקים</small>
+    </a>
+    <a class="ig" href="https://www.instagram.com/botik.agent/" target="_blank" rel="noopener">אינסטגרם ←</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">בוט + בוטיק = סוכנים שנתפרים לעסק</span>
+      <h1>סוכן AI שנתפר <em>לעסק שלך.</em><br>כמו אצל חייט.</h1>
+      <p class="lede">אני יונתן. כל יום אני בודק כלי AI אחד ומספר בכנות מה עובד ומה לא. לבעלי עסקים קטנים אני בונה סוכני AI בהתאמה אישית, לפי איך שהעסק שלך באמת עובד.</p>
+      <div class="ctas">
+        <div>
+          <a class="btn btn-primary todo" href="#להשלים-קישור-לקביעת-שיחה">לקבוע שיחת היכרות</a>
+          <span class="todo-tag">[להשלים: קישור לקביעת שיחה]</span>
+        </div>
+        <div><a class="btn btn-ghost" href="#guides">למדריכים החינמיים</a></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 240 260" role="img" aria-label="בוטי, הקמע של בוטיק">
+        <line x1="120" y1="40" x2="120" y2="70" stroke="#0F0B1E" stroke-width="8"/>
+        <circle cx="120" cy="30" r="16" fill="#FFD23F"/><circle cx="114" cy="25" r="5" fill="#FFF3B8"/>
+        <path d="M70 200 h100 a20 20 0 0 1 20 20 v40 h-140 v-40 a20 20 0 0 1 20 -20z" fill="#FF6A3D"/>
+        <path d="M86 200 l10 60 h10 l-6-60z M154 200 l-10 60 h-10 l6-60z" fill="#FFD23F"/>
+        <circle cx="120" cy="236" r="10" fill="#17122B"/><circle cx="120" cy="236" r="5" fill="#5CF2FF"/>
+        <rect x="20" y="66" width="200" height="150" rx="56" fill="#FF6A3D"/>
+        <path d="M24 170 a56 56 0 0 0 52 46 h88 a56 56 0 0 0 52-46 q-96 -16 -192 0z" fill="#E85A2E"/>
+        <rect x="40" y="58" width="44" height="10" rx="5" fill="#FF9C7E" transform="translate(0 20)"/>
+        <rect x="44" y="96" width="152" height="100" rx="34" fill="#17122B" stroke="#2A2F4A" stroke-width="4"/>
+        <path d="M76 140 q14-20 28 0 M136 140 q14-20 28 0" stroke="#5CF2FF" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M100 160 h40 q-20 22 -40 0z" fill="#5CF2FF"/>
+      </svg>
+    </div>
+  </div>
+  <div class="tape-strip" aria-hidden="true"></div>
+</section>
+
+<section>
+  <div class="wrap what">
+    <div>
+      <h2>מה זה סוכן, בלי באזוורדס</h2>
+      <p>סוכן הוא Claude, או כלי דומה, שקיבל הוראות קבועות על העסק שלך וגישה לכלים שאתה כבר עובד איתם. הוא לוקח משימה שחוזרת על עצמה ועושה אותה, כל פעם באותה דרך.</p>
+      <p>"בהתאמה אישית" אומר שמתחילים מהעסק, לא מהכלי: איך אתה עונה ללקוח, מה מותר להבטיח, ומה חייב לעבור דרכך.</p>
+    </div>
+    <div class="note">
+      <strong>מה אני לא מבטיח</strong>
+      לא כל משימה מתאימה לסוכן. אם בשיחה יתברר שזה לא שווה את זה אצלך, אגיד לך. כנות היא כל הסיפור של העמוד הזה: גם באינסטגרם אני מספר מה לא עובד.
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>על מה מדברים בשיחה</h2>
+    <p class="sub">ארבעה מקומות שבהם בעלי עסקים קטנים מאבדים הכי הרבה זמן. בשיחה בודקים אם אחד מהם קורה אצלך.</p>
+    <div class="grid g4">
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></div>
+        <h3>מענה ללקוחות</h3>
+        <p>אותן שאלות שחוזרות כל יום, גם בשעות שאתה לא זמין.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <h3>קביעת תורים</h3>
+        <p>הלוך ושוב של "מתי נוח לך?" שלוקח יותר מהתור עצמו.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h18l-7 9v6l-4 2v-8z"/></svg></div>
+        <h3>לידים</h3>
+        <p>פניות שנכנסות ממקומות שונים ונשכחות בדרך.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div>
+        <h3>ניירת</h3>
+        <p>סיכומים, טבלאות והעתקות בין מערכות שמישהו צריך לעשות.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>איך זה עובד</h2>
+    <p class="sub">שלושה צעדים. הראשון לא עולה כלום ולא מחייב לכלום.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>שיחת היכרות</h3>
+        <p>20 דקות, בחינם. מספרים לי איך העסק עובד ומה הכי גוזל לך זמן.</p>
+      </div>
+      <div class="step">
+        <h3>תשובה כנה</h3>
+        <p>אם סוכן יכול לחסוך לך זמן, אגיד איפה ואיך. אם לא, אגיד גם את זה.</p>
+      </div>
+      <div class="step">
+        <h3>בונים, אם מתאים</h3>
+        <p>סוכן שנתפר לעסק שלך, ובודקים אותו על משימות אמיתיות לפני שסומכים עליו.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guides" class="guides" style="padding-top:0">
+  <div class="wrap">
+    <h2>המדריכים החינמיים</h2>
+    <p class="sub">מה ששלחתי למי שכתב בתגובות. כל פרומפט ופקודה עם כפתור העתקה.</p>
+    <div class="grid g3">
+      <a class="card" href="guides/hatkana.html">
+        <span class="kw">התקנה</span>
+        <h3>מתחילים לעבוד עם Claude Code</h3>
+        <p>שתי דרכים: מהאפליקציה בלי טרמינל, או בפקודה אחת.</p>
+        <span class="more">למדריך ←</span>
+      </a>
+      <a class="card" href="guides/boded.html">
+        <span class="kw">בודק</span>
+        <h3>בודקים סקיל לפני שמתקינים</h3>
+        <p>הפרומפט שאני מדביק לפני כל התקנה, והמדריך המלא על סקילים.</p>
+        <span class="more">למדריך ←</span>
+      </a>
+      <a class="card" href="guides/matkon.html">
+        <span class="kw">מתכון</span>
+        <h3>בונים סקיל ראשון</h3>
+        <p>הוראה אחת שמדביקים ל-Claude, והוא בונה לך סקיל.</p>
+        <span class="more">למדריך ←</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="call" class="final">
+  <div class="wrap">
+    <h2>יש לך עסק? בוא נדבר 20 דקות</h2>
+    <p class="sub">בחינם ובלי התחייבות. בסוף השיחה תדע אם סוכן יכול לחסוך לך זמן, ואיפה.</p>
+    <div class="ctas">
+      <div>
+        <a class="btn btn-primary todo" href="#להשלים-קישור-לקביעת-שיחה">לקבוע שיחת היכרות</a>
+        <span class="todo-tag">[להשלים: קישור לקביעת שיחה]</span>
+      </div>
+      <div>
+        <a class="btn btn-ghost todo" href="#להשלים-מספר-וואטסאפ">לכתוב לי בוואטסאפ</a>
+        <span class="todo-tag">[להשלים: מספר וואטסאפ]</span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>בוטיק · סוכני AI לעסקים</span>
+    <a href="https://www.instagram.com/botik.agent/" target="_blank" rel="noopener">כל יום כלי AI אחד, באינסטגרם</a>
+  </div>
+</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="boti-head">
+      <line x1="32" y1="6" x2="32" y2="14" stroke="#5CF2FF" stroke-width="2.5"/>
+      <circle cx="32" cy="6" r="4.5" fill="#FFD23F"/>
+      <rect x="6" y="14" width="52" height="42" rx="16" fill="#FF6A3D"/>
+      <rect x="12" y="21" width="40" height="28" rx="10" fill="#17122B"/>
+      <path d="M20 34 q4-6 8 0 M36 34 q4-6 8 0" stroke="#5CF2FF" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M27 40 h10 q-5 6 -10 0z" fill="#5CF2FF"/>
+    </g>
+  </defs>
+</svg>
+</body>
+</html>
