@@ -6,12 +6,6 @@
 <title>בוטיק | סוכני AI לעסקים</title>
 <meta name="description" content="אני יונתן. בודק כל יום כלי AI אחד, ובונה סוכני AI בהתאמה אישית לעסקים קטנים. שיחת היכרות של 20 דקות, בחינם.">
 <meta name="theme-color" content="#17122B">
-<!--
-  טיוטה. להשלים לפני העלאה (חפשו "להשלים"):
-  1. קישור לקביעת שיחה, או מספר וואטסאפ (href של הכפתורים עם class="todo").
-  2. לאשר: "20 דקות, בחינם ובלי התחייבות" (מתוך BRAND.md).
-  3. להוריד את פס הטיוטה (class="draft-bar").
--->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -19,20 +13,21 @@
 :root{
   --plum:#17122B; --plum-2:#241C40; --coral:#FF6A3D; --coral-dark:#D94A22;
   --cyan:#5CF2FF; --tape:#FFD23F; --paper:#F3EFFA; --line:#D9D0EC;
-  --muted-dark:#B9B0D3; --muted-light:#5A5275;
+  --muted-dark:#B9B0D3; --muted-light:#5A5275; --wa:#25D366;
   --f:"Rubik","Heebo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{font-family:var(--f);background:var(--paper);color:var(--plum);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
 a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;background:var(--tape);color:var(--plum);padding:8px 14px;border-radius:10px;font-weight:700;z-index:20}
+.skip:focus{top:12px}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 bdi,.ltr{direction:ltr;unicode-bidi:isolate}
+[hidden]{display:none!important}
 
-/* draft bar */
-.draft-bar{background:var(--tape);color:var(--plum);font-size:14px;font-weight:500;text-align:center;padding:8px 16px}
 
-/* header */
 header.top{background:var(--plum);color:var(--paper)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:20px}
@@ -41,52 +36,88 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;g
 .ig{font-size:15px;color:var(--cyan);text-decoration:none;font-weight:500}
 .ig:hover{text-decoration:underline}
 
-/* hero */
+/* keyword band behind a word in headings */
+.band{background:linear-gradient(transparent 58%,var(--hl,var(--tape)) 58%,var(--hl,var(--tape)) 92%,transparent 92%);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.on-dark .band{--hl:var(--coral-dark)}
+
 .hero{background:var(--plum);color:var(--paper);overflow:hidden;position:relative}
 .hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:32px;padding-top:48px;padding-bottom:72px}
 .eyebrow{display:inline-block;background:var(--plum-2);color:var(--cyan);font-weight:500;font-size:14px;padding:5px 12px;border-radius:999px;margin-bottom:18px}
-h1{font-size:clamp(34px,6vw,58px);line-height:1.1;font-weight:900;letter-spacing:-.5px;margin-bottom:18px}
-h1 em{font-style:normal;color:var(--coral)}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.15;font-weight:900;letter-spacing:-.5px;margin-bottom:18px}
 .lede{font-size:clamp(17px,2.2vw,20px);color:#E4DDF5;max-width:34em;margin-bottom:28px}
-.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:14px;font-weight:700;font-size:17px;text-decoration:none;border:2px solid transparent;transition:transform .15s ease,background .15s ease}
 .btn:active{transform:translateY(1px)}
+.btn svg{width:20px;height:20px;flex:none}
 .btn-primary{background:var(--coral);color:#fff}
 .btn-primary:hover{background:var(--coral-dark)}
 .btn-ghost{border-color:#4A3F70;color:var(--paper)}
 .btn-ghost:hover{border-color:var(--cyan)}
-.btn-light{border-color:var(--line);color:var(--plum);background:#fff}
-.btn-light:hover{border-color:var(--coral)}
-.todo{position:relative}
 .todo-tag{display:block;font-size:12px;font-weight:500;color:var(--tape);margin-top:6px}
-.on-light .todo-tag{color:#8A6A00}
+.fine{font-size:14px;color:var(--muted-dark);margin-top:12px}
 .hero-art{display:flex;justify-content:center}
 .hero-art svg{width:min(300px,70vw);height:auto;filter:drop-shadow(0 24px 40px rgba(0,0,0,.35))}
 .tape-strip{position:absolute;inset-inline:0;bottom:0;height:16px;background:repeating-linear-gradient(90deg,var(--tape) 0 22px,#E8BC2A 22px 24px);opacity:.95}
 
-/* sections */
 section{padding:64px 0}
-h2{font-size:clamp(26px,4vw,38px);line-height:1.2;font-weight:800;margin-bottom:14px}
+h2{font-size:clamp(26px,4vw,38px);line-height:1.25;font-weight:800;margin-bottom:14px}
 .sub{color:var(--muted-light);max-width:40em;margin-bottom:32px;font-size:18px}
 .grid{display:grid;gap:16px}
-.g4{grid-template-columns:repeat(4,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
 .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
 .card h3{font-size:19px;font-weight:700;margin-bottom:6px}
 .card p{color:var(--muted-light);font-size:16px}
-.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;background:var(--paper)}
-.ico svg{width:24px;height:24px;stroke:var(--coral);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-.what{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-.what p{font-size:18px;margin-bottom:14px}
-.note{background:#fff;border-inline-start:5px solid var(--cyan);border-radius:14px;padding:18px 20px;font-size:16px}
-.note strong{display:block;margin-bottom:4px}
+/* demo */
+.demo{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:center}
+.demo-copy p{font-size:18px;margin-bottom:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 14px}
+.tab{font-family:var(--f);font-size:15px;font-weight:700;padding:8px 14px;border-radius:999px;border:2px solid var(--line);background:#fff;color:var(--plum);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--plum);border-color:var(--plum);color:var(--paper)}
+.switch{display:inline-flex;background:#fff;border:2px solid var(--line);border-radius:14px;padding:4px;gap:4px}
+.switch button{font-family:var(--f);font-size:16px;font-weight:700;padding:10px 16px;border-radius:10px;border:0;background:transparent;color:var(--muted-light);cursor:pointer;min-height:44px}
+.switch button[aria-pressed="true"]{background:var(--coral);color:#fff}
+.switch button[data-mode="without"][aria-pressed="true"]{background:var(--plum);color:var(--paper)}
+.demo-note{font-size:14px;color:var(--muted-light);margin-top:14px}
+.phone{background:var(--plum);border-radius:34px;padding:12px;box-shadow:0 24px 50px rgba(23,18,43,.25)}
+.screen{background:#ECE5DD;border-radius:24px;overflow:hidden;min-height:430px;display:flex;flex-direction:column}
+.chat-head{background:#1F2C34;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500}
+.chat-head .av{width:32px;height:32px;border-radius:50%;background:var(--coral);display:grid;place-items:center}
+.chat-head .av svg{width:24px;height:24px}
+.chat-head .av-person{background:#6B7C85}
+.chat-head .av-person svg{width:20px;height:20px}
+.chat-head small{display:block;font-size:12px;color:#B6C2C9;font-weight:400}
+.chat{flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:84%;padding:8px 10px 6px;border-radius:12px;font-size:15px;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.08);animation:pop .25s ease both}
+.msg time{display:block;font-size:11px;color:#667781;text-align:end;margin-top:2px}
+.msg.in{background:#fff;align-self:flex-end;border-start-end-radius:4px}   /* customer: left, like incoming on the business phone */
+.msg.out{background:#D9FDD3;align-self:flex-start;border-start-start-radius:4px}
+.msg.sys{align-self:center;background:#FFF5C4;color:#5A4A00;font-size:13px;text-align:center;max-width:92%}
+.msg.bad{align-self:center;background:#FFE1D8;color:#8A2A10;font-size:14px;font-weight:500;text-align:center;max-width:92%}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
+/* pain bubbles */
+.bubbles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 22px}
+.bubble{position:relative;background:#fff;border:1px solid var(--line);border-radius:22px;border-end-start-radius:6px;padding:18px 20px 16px;box-shadow:0 8px 20px rgba(23,18,43,.06)}
+.bubble:nth-child(even){border-end-start-radius:22px;border-end-end-radius:6px;transform:translateY(14px)}
+.bubble::before{content:"";position:absolute;top:-5px;inset-inline-end:-5px;width:14px;height:14px;border-radius:50%;background:var(--coral);border:3px solid var(--paper)}
+.bubble q{display:block;font-size:19px;font-weight:700;line-height:1.4;quotes:"״" "״"}
+.bubble span{display:inline-block;margin-top:10px;font-size:14px;font-weight:500;color:var(--coral-dark);background:#FFEDE7;padding:2px 10px;border-radius:999px}
+
+/* steps on a measuring tape */
+.tape-line{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.tape-line svg{width:46px;height:46px;flex:none}
+.tape-line i{flex:1;height:14px;border-radius:4px;background:var(--tape) repeating-linear-gradient(90deg,transparent 0 13px,rgba(23,18,43,.55) 13px 15px);background-size:15px 7px;background-repeat:repeat-x;background-position:0 0}
 .steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .step{background:var(--plum);color:var(--paper);border-radius:18px;padding:24px;position:relative}
 .step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--coral);color:#fff;font-weight:800;margin-bottom:14px}
 .step h3{font-size:19px;margin-bottom:6px}
 .step p{color:var(--muted-dark);font-size:16px}
+
+.what{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.what p{font-size:18px;margin-bottom:14px}
+.note{background:#fff;border-inline-start:5px solid var(--cyan);border-radius:14px;padding:18px 20px;font-size:16px}
+.note strong{display:block;margin-bottom:4px}
 
 .guides .card{text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:border-color .15s ease,transform .15s ease}
 .guides .card:hover{border-color:var(--coral);transform:translateY(-2px)}
@@ -100,27 +131,40 @@ h2{font-size:clamp(26px,4vw,38px);line-height:1.2;font-weight:800;margin-bottom:
 footer{background:var(--plum);color:var(--muted-dark);font-size:14px;border-top:1px solid var(--plum-2)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding-top:20px;padding-bottom:28px}
 
+.wa-float{position:fixed;inset-inline-start:16px;bottom:16px;z-index:10;display:none;align-items:center;gap:8px;background:var(--wa);color:#08341A;font-weight:800;font-size:16px;text-decoration:none;padding:12px 18px;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.wa-float svg{width:22px;height:22px}
+.wa-float.away{opacity:0;pointer-events:none;transform:translateY(12px)}
+.wa-float{transition:opacity .2s ease,transform .2s ease}
+
 @media (max-width:860px){
   .hero .wrap{grid-template-columns:1fr;padding-top:32px;padding-bottom:56px}
   .hero-art{order:-1}
   .hero-art svg{width:150px}
-  .g4{grid-template-columns:1fr 1fr}
-  .g3,.steps,.what{grid-template-columns:1fr}
+  .g3,.steps,.what,.demo{grid-template-columns:1fr}
+  .demo .phone{max-width:340px;margin:0 auto;width:100%}
+  .has-wa .wa-float{display:inline-flex}
+  .has-wa footer .wrap{padding-bottom:84px}
+}
+@media (max-width:520px){
+  .bubbles{grid-template-columns:1fr;gap:14px}
+  .bubble:nth-child(even){transform:none;margin-inline-start:24px}
+  .bubble:nth-child(odd){margin-inline-end:24px}
 }
 @media (max-width:420px){
   body{font-size:16px}
   .wrap{padding:0 16px}
-  .g4{grid-template-columns:1fr}
   section{padding:48px 0}
-  .ctas .btn{width:100%}
+  .ctas>div,.ctas .btn{width:100%}
   .logo small{display:none}
+  .switch{width:100%}
+  .switch button{flex:1}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">דילוג לתוכן</a>
 
-<div class="draft-bar">טיוטה: הכפתורים לקביעת שיחה עוד לא מחוברים</div>
 
 <header class="top">
   <div class="wrap">
@@ -132,20 +176,22 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
   </div>
 </header>
 
-<main>
-<section class="hero" style="padding:0">
+<main id="main">
+<section class="hero on-dark" style="padding:0">
   <div class="wrap">
     <div>
       <span class="eyebrow">בוט + בוטיק = סוכנים שנתפרים לעסק</span>
-      <h1>סוכן AI שנתפר <em>לעסק שלך.</em><br>כמו אצל חייט.</h1>
+      <h1>סוכן AI שנתפר <span class="band">לעסק שלך.</span><br>כמו אצל חייט.</h1>
       <p class="lede">אני יונתן. כל יום אני בודק כלי AI אחד ומספר בכנות מה עובד ומה לא. לבעלי עסקים קטנים אני בונה סוכני AI בהתאמה אישית, לפי איך שהעסק שלך באמת עובד.</p>
       <div class="ctas">
         <div>
-          <a class="btn btn-primary todo" href="#להשלים-קישור-לקביעת-שיחה">לקבוע שיחת היכרות</a>
-          <span class="todo-tag">[להשלים: קישור לקביעת שיחה]</span>
+          <a class="btn btn-primary" data-contact="whatsapp" href="#call">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>כתבו לי ל-WhatsApp
+          </a>
         </div>
-        <div><a class="btn btn-ghost" href="#guides">למדריכים החינמיים</a></div>
+        <div><a class="btn btn-ghost" href="#demo">ככה זה נראה בעסק</a></div>
       </div>
+      <p class="fine">שיחת היכרות של 20 דקות, בחינם ובלי התחייבות. אני עונה בעצמי.</p>
     </div>
     <div class="hero-art">
       <svg viewBox="0 0 240 260" role="img" aria-label="בוטי, הקמע של בוטיק">
@@ -156,7 +202,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
         <circle cx="120" cy="236" r="10" fill="#17122B"/><circle cx="120" cy="236" r="5" fill="#5CF2FF"/>
         <rect x="20" y="66" width="200" height="150" rx="56" fill="#FF6A3D"/>
         <path d="M24 170 a56 56 0 0 0 52 46 h88 a56 56 0 0 0 52-46 q-96 -16 -192 0z" fill="#E85A2E"/>
-        <rect x="40" y="58" width="44" height="10" rx="5" fill="#FF9C7E" transform="translate(0 20)"/>
+        <rect x="40" y="78" width="44" height="10" rx="5" fill="#FF9C7E"/>
         <rect x="44" y="96" width="152" height="100" rx="34" fill="#17122B" stroke="#2A2F4A" stroke-width="4"/>
         <path d="M76 140 q14-20 28 0 M136 140 q14-20 28 0" stroke="#5CF2FF" stroke-width="9" fill="none" stroke-linecap="round"/>
         <path d="M100 160 h40 q-20 22 -40 0z" fill="#5CF2FF"/>
@@ -166,10 +212,50 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
   <div class="tape-strip" aria-hidden="true"></div>
 </section>
 
+<section id="demo">
+  <div class="wrap demo">
+    <div class="demo-copy">
+      <h2>ככה זה נראה <span class="band">בעסק</span></h2>
+      <p>לקוח כותב לך בשעה שאתה לא ליד הטלפון. מה קורה עכשיו, ומה קורה כשיש סוכן שעונה?</p>
+      <div class="tabs" role="tablist" aria-label="בחירת דוגמה">
+        <button class="tab" role="tab" aria-selected="true" data-scene="appt">קביעת תור</button>
+        <button class="tab" role="tab" aria-selected="false" data-scene="lead">שאלה על מחיר</button>
+      </div>
+      <div class="switch" role="group" aria-label="בלי סוכן או עם סוכן">
+        <button type="button" data-mode="without" aria-pressed="false">בלי סוכן</button>
+        <button type="button" data-mode="with" aria-pressed="true">עם סוכן</button>
+      </div>
+      <p class="demo-note">דוגמה מומצאת להמחשה, בלי שמות ונתונים אמיתיים. מה בדיוק סוכן יכול לעשות תלוי בעסק ובכלים שלו, ואת זה בודקים בשיחה.</p>
+    </div>
+    <div class="phone" aria-live="polite">
+      <div class="screen">
+        <div class="chat-head">
+          <span class="av av-person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="4" fill="#fff"/><path d="M4 21a8 8 0 0 1 16 0z" fill="#fff"/></svg></span>
+          <span>לקוח חדש<small data-status>בוואטסאפ של העסק שלך</small></span>
+        </div>
+        <div class="chat" data-chat></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>נשמע <span class="band">מוכר?</span></h2>
+    <p class="sub">משפטים שבעלי עסקים קטנים אומרים על היום שלהם. בשיחה בודקים אם אחד מהם קורה אצלך.</p>
+    <div class="bubbles">
+      <div class="bubble"><q>אני עונה על אותן שאלות שוב ושוב, וגם בערב.</q><span>מענה ללקוחות</span></div>
+      <div class="bubble"><q>עד שאני מתפנה לענות, הלקוח כבר קבע אצל מישהו אחר.</q><span>קביעת תורים</span></div>
+      <div class="bubble"><q>פניות מגיעות מאינסטגרם, מוואטסאפ ומהטלפון, וחלק פשוט נשכחות.</q><span>לידים</span></div>
+      <div class="bubble"><q>בסוף היום אני עוד מעתיק פרטים מטבלה לטבלה.</q><span>ניירת</span></div>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap what">
     <div>
-      <h2>מה זה סוכן, בלי באזוורדס</h2>
+      <h2>מה זה סוכן, <span class="band">בלי באזוורדס</span></h2>
       <p>סוכן הוא Claude, או כלי דומה, שקיבל הוראות קבועות על העסק שלך וגישה לכלים שאתה כבר עובד איתם. הוא לוקח משימה שחוזרת על עצמה ועושה אותה, כל פעם באותה דרך.</p>
       <p>"בהתאמה אישית" אומר שמתחילים מהעסק, לא מהכלי: איך אתה עונה ללקוח, מה מותר להבטיח, ומה חייב לעבור דרכך.</p>
     </div>
@@ -182,37 +268,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
 
 <section style="padding-top:0">
   <div class="wrap">
-    <h2>על מה מדברים בשיחה</h2>
-    <p class="sub">ארבעה מקומות שבהם בעלי עסקים קטנים מאבדים הכי הרבה זמן. בשיחה בודקים אם אחד מהם קורה אצלך.</p>
-    <div class="grid g4">
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></div>
-        <h3>מענה ללקוחות</h3>
-        <p>אותן שאלות שחוזרות כל יום, גם בשעות שאתה לא זמין.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
-        <h3>קביעת תורים</h3>
-        <p>הלוך ושוב של "מתי נוח לך?" שלוקח יותר מהתור עצמו.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h18l-7 9v6l-4 2v-8z"/></svg></div>
-        <h3>לידים</h3>
-        <p>פניות שנכנסות ממקומות שונים ונשכחות בדרך.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div>
-        <h3>ניירת</h3>
-        <p>סיכומים, טבלאות והעתקות בין מערכות שמישהו צריך לעשות.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap">
-    <h2>איך זה עובד</h2>
+    <h2>איך <span class="band">זה עובד</span></h2>
     <p class="sub">שלושה צעדים. הראשון לא עולה כלום ולא מחייב לכלום.</p>
+    <div class="tape-line" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#boti-head"/></svg><i></i></div>
     <div class="steps">
       <div class="step">
         <h3>שיחת היכרות</h3>
@@ -232,8 +290,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
 
 <section id="guides" class="guides" style="padding-top:0">
   <div class="wrap">
-    <h2>המדריכים החינמיים</h2>
-    <p class="sub">מה ששלחתי למי שכתב בתגובות. כל פרומפט ופקודה עם כפתור העתקה.</p>
+    <h2>המדריכים <span class="band">החינמיים</span></h2>
+    <p class="sub">מה ששלחתי למי שכתב בתגובות. בלי הרשמה, וכל פרומפט ופקודה עם כפתור העתקה.</p>
     <div class="grid g3">
       <a class="card" href="guides/hatkana.html">
         <span class="kw">התקנה</span>
@@ -257,18 +315,18 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
   </div>
 </section>
 
-<section id="call" class="final">
+<section id="call" class="final on-dark">
   <div class="wrap">
-    <h2>יש לך עסק? בוא נדבר 20 דקות</h2>
+    <h2>יש לך עסק? <span class="band">בוא נדבר</span> 20 דקות</h2>
     <p class="sub">בחינם ובלי התחייבות. בסוף השיחה תדע אם סוכן יכול לחסוך לך זמן, ואיפה.</p>
     <div class="ctas">
       <div>
-        <a class="btn btn-primary todo" href="#להשלים-קישור-לקביעת-שיחה">לקבוע שיחת היכרות</a>
-        <span class="todo-tag">[להשלים: קישור לקביעת שיחה]</span>
+        <a class="btn btn-primary" data-contact="whatsapp" href="#call">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>כתבו לי ל-WhatsApp
+        </a>
       </div>
-      <div>
-        <a class="btn btn-ghost todo" href="#להשלים-מספר-וואטסאפ">לכתוב לי בוואטסאפ</a>
-        <span class="todo-tag">[להשלים: מספר וואטסאפ]</span>
+      <div data-booking-wrap hidden>
+        <a class="btn btn-ghost" data-contact="booking" href="#call">לבחור זמן ביומן</a>
       </div>
     </div>
   </div>
@@ -277,10 +335,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
 
 <footer>
   <div class="wrap">
-    <span>בוטיק · סוכני AI לעסקים</span>
+    <span>בוטיק · סוכני AI לעסקים · הדף לא שומר עוגיות, לא מריץ כלי מעקב, ואין בו טפסים.</span>
     <a href="https://www.instagram.com/botik.agent/" target="_blank" rel="noopener">כל יום כלי AI אחד, באינסטגרם</a>
   </div>
 </footer>
+
+<a class="wa-float" data-contact="whatsapp" href="#call" aria-label="כתבו לי ל-WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>כתבו לי
+</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -292,7 +354,88 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
       <path d="M20 34 q4-6 8 0 M36 34 q4-6 8 0" stroke="#5CF2FF" stroke-width="3" fill="none" stroke-linecap="round"/>
       <path d="M27 40 h10 q-5 6 -10 0z" fill="#5CF2FF"/>
     </g>
+    <g id="wa-icon" fill="currentColor">
+      <path d="M12 2.2A9.7 9.7 0 0 0 3.6 16.8L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.2-.2-.2-.5-.3z"/>
+    </g>
   </defs>
 </svg>
+
+<script>
+var CONTACT = {
+  wa: "NzE3Mjk3NDQ1Mjc5",
+  booking: "",
+  message: "אהלן, הגעתי דרך דף הנחיתה של בוטיק. הפנייה שלי: "
+};
+
+(function(){
+  /* the number is never written on the page: the link is built only on click */
+  function waUrl(){ return 'https://wa.me/' + atob(CONTACT.wa).split('').reverse().join('') + '?text=' + encodeURIComponent(CONTACT.message); }
+  document.querySelectorAll('[data-contact="whatsapp"]').forEach(function(a){
+    a.addEventListener('click',function(e){ e.preventDefault(); window.location.href = waUrl(); });
+  });
+  document.body.classList.add('has-wa');
+  var fl=document.querySelector('.wa-float'), bigs=document.querySelectorAll('.btn[data-contact="whatsapp"]');
+  function syncFloat(){
+    var h=window.innerHeight, onScreen=false;
+    bigs.forEach(function(b){var r=b.getBoundingClientRect(); if(r.bottom>0&&r.top<h) onScreen=true});
+    fl.classList.toggle('away',onScreen);
+  }
+  window.addEventListener('scroll',syncFloat,{passive:true}); window.addEventListener('resize',syncFloat); syncFloat();
+  if (CONTACT.booking) {
+    document.querySelectorAll('[data-contact="booking"]').forEach(function(a){a.href=CONTACT.booking;a.target='_blank';a.rel='noopener'});
+    document.querySelectorAll('[data-booking-wrap]').forEach(function(w){w.hidden=false});
+  }
+
+  /* demo chat: illustrative only */
+  var SCENES = {
+    appt: {
+      without: [
+        ['in','היי, אפשר לקבוע לשבוע הבא? עדיף בבוקר','23:47'],
+        ['sys','נקרא בבוקר, ב-07:50'],
+        ['out','בוקר טוב! כן, מתי נוח לך?','07:52'],
+        ['bad','אין תשובה. בינתיים הוא קבע אצל מישהו אחר.']
+      ],
+      with: [
+        ['in','היי, אפשר לקבוע לשבוע הבא? עדיף בבוקר','23:47'],
+        ['out','היי! ביום שלישי יש 9:00 או 10:30. מה מתאים לך?','23:47'],
+        ['in','10:30','23:48'],
+        ['out','קבעתי לך יום שלישי ב-10:30. תגיע תזכורת יום לפני 🙂','23:48'],
+        ['sys','בבוקר אתה רואה תור חדש ביומן']
+      ]
+    },
+    lead: {
+      without: [
+        ['in','היי, כמה עולה אצלכם ייעוץ ראשון?','14:05'],
+        ['sys','ההודעה נקברה בין שאר ההודעות של היום'],
+        ['bad','אף אחד לא חזר אליו. הפנייה נשכחה.']
+      ],
+      with: [
+        ['in','היי, כמה עולה אצלכם ייעוץ ראשון?','14:05'],
+        ['out','היי! המחיר תלוי בכמה דברים, ואשמח שבעל העסק יחזור אליך עם תשובה מדויקת. איך קוראים לך, ומתי נוח לדבר?','14:05'],
+        ['in','דנה, אחרי 17:00','14:07'],
+        ['out','תודה דנה! העברתי, ויחזרו אליך היום אחרי 17:00.','14:07'],
+        ['sys','הפנייה נשמרה ברשימת הלידים שלך, עם השם והשעה']
+      ]
+    }
+  };
+  var scene='appt', mode='with', chat=document.querySelector('[data-chat]'), status=document.querySelector('[data-status]');
+  function render(){
+    chat.innerHTML='';
+    SCENES[scene][mode].forEach(function(m,i){
+      var d=document.createElement('div'); d.className='msg '+m[0]; d.style.animationDelay=(i*.12)+'s';
+      d.textContent=m[1];
+      if(m[2]){var t=document.createElement('time'); t.textContent=(m[0]==='out'&&mode==='with'?'🤖 הסוכן · ':'')+m[2]; d.appendChild(t)}
+      chat.appendChild(d);
+    });
+  }
+  document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){
+    scene=b.dataset.scene; document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',x===b)}); render();
+  })});
+  document.querySelectorAll('.switch button').forEach(function(b){b.addEventListener('click',function(){
+    mode=b.dataset.mode; document.querySelectorAll('.switch button').forEach(function(x){x.setAttribute('aria-pressed',x===b)}); render();
+  })});
+  render();
+})();
+</script>
 </body>
 </html>
