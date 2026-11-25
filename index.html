@@ -64,6 +64,7 @@ h2{font-size:clamp(26px,4vw,38px);line-height:1.25;font-weight:800;margin-bottom
 .sub{color:var(--muted-light);max-width:40em;margin-bottom:32px;font-size:18px}
 .grid{display:grid;gap:16px}
 .g3{grid-template-columns:repeat(3,1fr)}
+.g-guides{grid-template-columns:repeat(4,1fr)}
 .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
 .card h3{font-size:19px;font-weight:700;margin-bottom:6px}
 .card p{color:var(--muted-light);font-size:16px}
@@ -140,6 +141,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
   .hero .wrap{grid-template-columns:1fr;padding-top:32px;padding-bottom:56px}
   .hero-art{order:-1}
   .hero-art svg{width:150px}
+  .g-guides{grid-template-columns:1fr 1fr}
   .g3,.steps,.what,.demo{grid-template-columns:1fr}
   .demo .phone{max-width:340px;margin:0 auto;width:100%}
   .has-wa .wa-float{display:inline-flex}
@@ -147,6 +149,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
 }
 @media (max-width:520px){
   .bubbles{grid-template-columns:1fr;gap:14px}
+  .g-guides{grid-template-columns:1fr}
   .bubble:nth-child(even){transform:none;margin-inline-start:24px}
   .bubble:nth-child(odd){margin-inline-end:24px}
 }
@@ -292,7 +295,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
   <div class="wrap">
     <h2>המדריכים <span class="band">החינמיים</span></h2>
     <p class="sub">מה ששלחתי למי שכתב בתגובות. בלי הרשמה, וכל פרומפט ופקודה עם כפתור העתקה.</p>
-    <div class="grid g3">
+    <div class="grid g-guides">
       <a class="card" href="guides/hatkana.html">
         <span class="kw">התקנה</span>
         <h3>מתחילים לעבוד עם Claude Code</h3>
@@ -309,6 +312,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;p
         <span class="kw">מתכון</span>
         <h3>בונים סקיל ראשון</h3>
         <p>הוראה אחת שמדביקים ל-Claude, והוא בונה לך סקיל.</p>
+        <span class="more">למדריך ←</span>
+      </a>
+      <a class="card" href="guides/sheka.html">
+        <span class="kw">שקע</span>
+        <h3>מחברים את Claude למייל וליומן</h3>
+        <p>שלושה צעדים לחיבור, ושלוש בקשות מוכנות: סיכום בוקר, חשבוניות החודש ומיילים שלא נענו.</p>
         <span class="more">למדריך ←</span>
       </a>
     </div>
