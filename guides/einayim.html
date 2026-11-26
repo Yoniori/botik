@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>לתת לקלוד עיניים לרשת | בוטיק</title>
+<meta name="description" content="Agent Reach: סקיל חינמי שנותן ל-Claude Code לקרוא ביוטיוב, באתרים, בגיטהאב, ברדיט ובלינקדאין. משפט ההתקנה, חמש בקשות מוכנות לבעלי עסקים, ומה לבדוק לפני.">
+<meta name="theme-color" content="#F7F4EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F4EE; --paper-2:#EFE9DF; --card:#FFFDF9;
+  --ink:#16181D; --ink-2:#22252C; --ink-line:#353943;
+  --text:#16181D; --muted:#5E6068; --on-ink:#ECE7DE; --on-ink-muted:#A9A69F;
+  --line:#DDD5C8; --accent:#B5401A; --accent-dark:#933313; --accent-soft:#F4E3D8; --accent-light:#F08A5D;
+  /* older names still used by some guide pages */
+  --plum:var(--ink); --plum-2:var(--ink-2); --coral:var(--accent); --coral-dark:var(--accent);
+  --muted-light:var(--muted); --muted-dark:var(--on-ink-muted); --tape:var(--accent-soft); --cyan:var(--accent-light);
+  --serif:"Frank Ruhl Libre","Times New Roman",serif;
+  --f:"Heebo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--f);background:var(--paper);color:var(--text);line-height:1.7;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+code,.ltr{direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px}
+
+header.top{position:sticky;top:0;z-index:30;background:rgba(247,244,238,.92);-webkit-backdrop-filter:saturate(1.2) blur(10px);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:18px;height:60px;max-width:1120px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo svg{width:28px;height:28px}
+.logo b{font-family:var(--serif);font-weight:900;font-size:22px}
+.back{margin-inline-start:auto;color:var(--muted);text-decoration:none;font-size:15px;font-weight:500}
+.back:hover{color:var(--text)}
+.head-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700;font-size:15px;padding:8px 15px;border-radius:999px}
+.head-cta:hover{background:var(--accent)}
+.head-cta svg{width:17px;height:17px}
+
+.intro{padding:44px 0 34px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.kw{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.04em;margin-bottom:14px}
+.kw::before{content:"מדריך";color:var(--muted);font-weight:500}
+.kw::after{content:"";width:40px;height:1px;background:currentColor;opacity:.5}
+h1{font-family:var(--serif);font-size:clamp(32px,6vw,50px);line-height:1.1;font-weight:900;letter-spacing:-.5px;margin-bottom:14px}
+.intro p{color:#3C3E45;font-size:19px;max-width:34em}
+.checked{display:block;margin-top:14px;font-size:14px;color:var(--muted)}
+
+main.wrap{padding-top:36px;padding-bottom:8px}
+main>:first-child{margin-top:0}
+main h2{font-family:var(--serif);font-size:clamp(24px,4.5vw,32px);line-height:1.2;font-weight:700;margin:48px 0 12px;scroll-margin-top:76px}
+main h3{font-family:var(--serif);font-size:21px;font-weight:700;margin:28px 0 8px}
+main p{margin-bottom:14px}
+main ul,main ol{margin:0 0 16px;padding-inline-start:24px}
+main li{margin-bottom:8px}
+main li::marker{color:var(--accent);font-weight:700}
+main code{font-family:var(--mono);font-size:.86em;background:var(--paper-2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;white-space:nowrap}
+main strong{font-weight:700}
+
+.block{position:relative;background:var(--ink);border-radius:14px;margin:12px 0 20px;overflow:hidden}
+.block-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px 8px 14px;background:var(--ink-2);color:var(--on-ink-muted);font-size:13px;font-weight:500;border-bottom:1px solid var(--ink-line)}
+.block pre{margin:0;padding:16px 18px;color:var(--on-ink);font-family:var(--mono);font-size:15px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;unicode-bidi:plaintext;text-align:start}
+.block pre.cmd{direction:ltr;text-align:left;color:var(--accent-light);white-space:pre;overflow-x:auto;overflow-wrap:normal}
+.block pre.prompt{font-family:var(--f);font-size:16px}
+.copy{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:6px 14px;border-radius:999px;border:0;background:var(--accent);color:#fff;font-family:var(--f);font-size:15px;font-weight:700;cursor:pointer}
+.copy:hover{background:var(--accent-dark)}
+.copy.done{background:#E1F0E6;color:#1F6B42}
+.copy svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.warn{background:#FAF0DC;border-inline-start:4px solid #C98A12;border-radius:12px;padding:14px 16px;margin:16px 0 20px}
+.tip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:16px 0 20px}
+
+.table-wrap{overflow-x:auto;margin:12px 0 20px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:start;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--paper-2);font-weight:700}
+tr:last-child td{border-bottom:0}
+
+details.full{margin-top:48px;border-top:1px dashed var(--line);padding-top:12px}
+details.full>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border:1.5px solid var(--text);border-radius:14px;padding:16px 18px;font-family:var(--serif);font-weight:700;font-size:21px}
+details.full>summary::-webkit-details-marker{display:none}
+details.full>summary::after{content:"+";font-family:var(--f);font-size:26px;color:var(--accent)}
+details.full[open]>summary::after{content:"−"}
+
+.sources{font-size:15px}
+.sources a{overflow-wrap:anywhere}
+
+.cta{position:relative;background:var(--ink);color:var(--on-ink);border-radius:20px;padding:30px 26px;margin:52px 0 32px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+.cta::before{content:"";position:absolute;inset:9px;border:1.5px dashed var(--ink-line);border-radius:14px;pointer-events:none}
+.cta>svg{width:60px;height:60px}
+.cta h2{margin:0 0 6px;font-size:26px;color:#fff}
+.cta p{color:var(--on-ink-muted);margin:0 0 16px;font-size:16px}
+.cta .btns{position:relative;display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 20px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none}
+.btn-primary,.btn-wa{background:var(--accent);color:#fff}
+.btn-primary:hover,.btn-wa:hover{background:var(--accent-dark)}
+.btn-ghost{border:1.5px solid var(--ink-line);color:var(--on-ink)}
+.btn-ghost:hover{border-color:var(--on-ink)}
+
+footer{text-align:center;color:var(--muted);font-size:14px;padding:12px 0 40px}
+footer a{color:inherit}
+
+.needs{background:var(--card);border:1.5px solid var(--text);border-radius:16px;padding:20px 22px 8px;margin:0 0 30px}
+.needs h2{margin:0 0 10px!important;font-size:22px}
+.needs ul{margin-bottom:10px}
+.needs .warnline{background:var(--accent-soft);border-radius:10px;padding:10px 12px;margin:0 0 14px;font-size:15px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.btn svg{width:20px;height:20px;margin-inline-end:8px}
+.todo-tag{display:block;width:100%;font-size:12px;color:var(--accent-light);margin-top:-4px}
+[hidden]{display:none!important}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:8px;font-weight:700;z-index:40;text-decoration:none}
+.skip:focus{top:12px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:999px;font-size:15px;width:max-content;max-width:calc(100vw - 32px);text-align:center;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:480px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .back{display:none}
+  .head-cta{margin-inline-start:auto}
+  .intro{padding:32px 0 28px}
+  .cta{grid-template-columns:1fr;text-align:start;padding:28px 20px}
+  .cta>svg{width:50px;height:50px}
+  .cta .btn{width:100%}
+  li>.block{margin-inline-start:-24px}
+  li>h3{margin-inline-start:-24px}
+  .block pre{font-size:14px;padding:14px}
+  .block pre.prompt{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<style>
+.ask{background:var(--card);border:1px solid var(--line);border-radius:16px;border-end-start-radius:4px;padding:12px 16px;margin:8px 0 16px;font-weight:500;max-width:34em}
+.vs{display:grid;grid-template-columns:1fr 1.4fr;gap:14px;margin:8px 0 12px;align-items:start}
+.side{border-radius:16px;padding:16px 18px 6px}
+.side .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:2px 10px;margin-bottom:10px}
+.before{background:var(--paper-2);border:1px solid var(--line)}
+.before .tag{background:var(--card);color:var(--muted);border:1px solid var(--line)}
+.after{background:var(--card);border:1.5px solid var(--text)}
+.after .tag{background:var(--accent);color:#fff}
+.side .said{font-family:var(--serif);font-size:19px;line-height:1.45;margin-bottom:10px;padding-inline-start:12px;border-inline-start:3px solid var(--line)}
+.after .said{border-color:var(--accent)}
+.side .meta{font-size:14px;color:var(--muted)}
+.side ol{font-size:15px;margin-bottom:10px}
+.side li{margin-bottom:6px}
+.verdict{background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-weight:700;font-size:15px}
+.note{font-size:14px;color:var(--muted)}
+.warn ul{margin:6px 0 10px}
+.warn .last{margin-bottom:10px;font-size:14px}
+@media (max-width:640px){.vs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#boti-head"/></svg><b>בוטיק</b></a>
+    <a class="back" href="../index.html">מה אני עושה ←</a>
+    <a class="head-cta" data-contact="whatsapp" href="../index.html#call"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>כתבו לי</a>
+  </div>
+</header>
+
+<div class="intro">
+  <div class="wrap">
+    <span class="kw">עיניים</span>
+    <h1>לתת לקלוד עיניים לרשת</h1>
+    <p>סקיל חינמי בשם <bdi>Agent Reach</bdi> שנותן ל-<bdi>Claude Code</bdi> לקרוא ביוטיוב, באתרים ובגיטהאב, ועם התחברות גם ברדיט ובלינקדאין. כאן משפט ההתקנה, וחמש בקשות מוכנות לבעלי עסקים.</p>
+    <span class="checked">זה לא שלי: קוד פתוח של <bdi>Panniantong</bdi>, רישיון <bdi>MIT</bdi>, יותר מ-114 אלף כוכבים בגיטהאב. העובדות נבדקו בדף הפרויקט ב-26.11.2026.</span>
+  </div>
+</div>
+
+<main class="wrap" id="main">
+  <div class="needs">
+    <h2>מה צריך לפני שמתחילים</h2>
+    <ul>
+      <li><bdi>Claude Code</bdi> מותקן במחשב. עוד אין? <a href="hatkana.html">המדריך להתקנה, צעד אחרי צעד</a>.</li>
+      <li>לרדיט וללינקדאין: חשבון משני שמחובר בכרום. לא החשבון הראשי של העסק (ההסבר למטה).</li>
+    </ul>
+    <p class="warnline">⚠️ בצ'אט הרגיל ב-<bdi>claude.ai</bdi> זה לא יעבוד. ההתקנה מריצה פקודות במחשב, ולכן צריך <bdi>Claude Code</bdi> או סוכן אחר שמריץ פקודות. (זו המסקנה שלי מצורת ההתקנה. היוצר לא כותב את זה במילים האלה.)</p>
+  </div>
+
+  <h2>מה הוא פותח לקלוד</h2>
+  <p>בסרטון ראיתם: שלושה מקומות נפתחים מיד, וארבעה עם התחברות. לפי הטבלה של היוצר:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>מקום</th><th>מה קלוד יכול לעשות שם</th><th>מה צריך</th></tr></thead>
+      <tbody>
+        <tr><td>✅ יוטיוב</td><td>לחפש סרטונים, לקרוא מידע על סרטון ואת הכתוביות שלו</td><td>כלום. תמלול קול (לסרטון בלי כתוביות) דורש מפתח של <bdi>Groq</bdi> או <bdi>OpenAI</bdi></td></tr>
+        <tr><td>✅ אתרים</td><td>לחפש ברשת ולקרוא דפים</td><td>כלום</td></tr>
+        <tr><td>✅ גיטהאב</td><td>לחפש פרויקטים ולקרוא אותם</td><td>כלום</td></tr>
+        <tr><td>🔑 רדיט</td><td>לחפש פוסטים, לקרוא תגובות, לעבור על קהילה</td><td>מוסיפים אותו ("תוסיף את רדיט") ומתחברים</td></tr>
+        <tr><td>🔑 לינקדאין</td><td>לחפש משרות ולקרוא פרטי משרה</td><td>משרות ציבוריות: כלום. חיפוש בתוך האתר: התחברות</td></tr>
+        <tr><td>⚠️ פייסבוק, אינסטגרם, טוויטר</td><td>חיפוש ופרופילים</td><td>התחברות. ניסיוני: "יכול להישבר בכל רגע", כי הפלטפורמות נלחמות באוטומציה</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>משפט ההתקנה</h2>
+  <p>פותחים את <bdi>Claude Code</bdi>, מדביקים את המשפט הזה ושולחים. הוא מתקין לבד.</p>
+  <div class="block"><div class="block-head"><span>מדביקים ב-Claude Code</span><button class="copy" type="button">העתקה</button></div><pre class="cmd" style="white-space:pre-wrap;overflow-wrap:anywhere">Install Agent Reach: https://raw.githubusercontent.com/Panniantong/Agent-Reach/main/docs/install.md</pre></div>
+  <p>בדרך הוא עשוי לבקש מכם שלושה דברים:</p>
+  <ol>
+    <li><strong>לאשר הרצת פקודות.</strong> בלי זה הוא לא יכול להתקין.</li>
+    <li><strong>להתקין כלי קטן בשם <bdi>uv</bdi>.</strong> לפי היוצר, הוא לא דורש סיסמת מנהל.</li>
+    <li><strong>לבחור מקומות נוספים.</strong> בסוף הוא אומר מה כבר עובד ומה אפשר להוסיף. אפשר גם אחר כך, במשפט: "תוסיף את רדיט".</li>
+  </ol>
+  <div class="warn"><p style="margin:0">⚠️ יש חבילה ב-<bdi>PyPI</bdi> בשם <code>agent-reach</code>. <strong>היא לא הפרויקט הזה</strong>, והיוצר מזהיר ממנה. מתקינים רק דרך המשפט שלמעלה.</p></div>
+
+  <h2>חמש בקשות מוכנות לבעלי עסקים</h2>
+  <p>מעתיקים, משלימים את מה שבסוגריים המרובעים, ושולחים ל-<bdi>Claude Code</bdi> אחרי ההתקנה. שלוש הראשונות הן אלה מהסרטון.</p>
+
+  <h3>1. לסכם סרטון ביוטיוב · עובד מיד · הכי שימושי</h3>
+  <div class="block"><div class="block-head"><span>יוטיוב · עובד מיד</span><button class="copy" type="button">העתקה</button></div><pre class="prompt">תסכם לי את הסרטון הזה בחמש נקודות, ותגיד מה מתוכו אפשר ליישם בעסק שלי ([סוג העסק]): [קישור לסרטון ביוטיוב]</pre></div>
+
+  <h3>2. מה אומרים על המתחרה · רדיט, אחרי התחברות</h3>
+  <div class="block"><div class="block-head"><span>רדיט · אחרי התחברות</span><button class="copy" type="button">העתקה</button></div><pre class="prompt">מה אומרים על [שם המתחרה או המוצר] ברדיט? תביא את התלונות הכי נפוצות ואת מה שאנשים אוהבים, עם קישור לכל דיון.</pre></div>
+
+  <h3>3. למצוא משרות · לינקדאין, משרות ציבוריות בלי התחברות</h3>
+  <div class="block"><div class="block-head"><span>לינקדאין · משרות ציבוריות</span><button class="copy" type="button">העתקה</button></div><pre class="prompt">תמצא בלינקדאין משרות פתוחות של [תפקיד] ב[עיר], ותסדר בטבלה: חברה, תפקיד, קישור. ככה אני רואה גם מי מהמתחרים שלי מגייס עכשיו.</pre></div>
+
+  <h3>4. להשוות לאתר של המתחרה · עובד מיד</h3>
+  <div class="block"><div class="block-head"><span>אתרים · עובד מיד</span><button class="copy" type="button">העתקה</button></div><pre class="prompt">תקרא את האתר של [שם המתחרה] ([כתובת האתר שלו]) ואת האתר שלי ([הכתובת שלי]), ותשווה: מחירים, מה כל אחד מבטיח, ומה חסר אצלי.</pre></div>
+
+  <h3>5. רעיונות לתוכן מהשאלות של הלקוחות · עובד מיד</h3>
+  <div class="block"><div class="block-head"><span>יוטיוב · עובד מיד</span><button class="copy" type="button">העתקה</button></div><pre class="prompt">תחפש ביוטיוב סרטונים על [נושא מהתחום שלי], תקרא את הכתוביות של שלושה מהם, ותכין רשימה של עשר שאלות שאנשים שואלים על הנושא. מכל שאלה תציע לי רעיון לפוסט.</pre></div>
+  <p class="note">את חמש הבקשות האלה עוד לא הרצתי. הן בנויות לפי מה שהיוצר כותב שכל מקום יודע לעשות.</p>
+
+  <h2>משפטים שימושיים אחרי ההתקנה</h2>
+  <p>לפי היוצר, את הכלי עצמו מנהלים במשפטים רגילים לסוכן:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>אומרים</th><th>מה קורה</th></tr></thead>
+      <tbody>
+        <tr><td>"מה המצב של <bdi>Agent Reach</bdi>?"</td><td>הוא אומר אילו מקומות עובדים עכשיו, ומה הפסיק לעבוד</td></tr>
+        <tr><td>"תוסיף את רדיט" / "תסיר את רדיט"</td><td>מדליק את המקום ומתקין מה שצריך, או מכבה ומוחק את ההתחברות שלו</td></tr>
+        <tr><td>"תחליף חשבון"</td><td>פותח חלון התחברות, ואתם מתחברים בעצמכם</td></tr>
+        <tr><td>"תעדכן את <bdi>Agent Reach</bdi>"</td><td>מעדכן את הכלי ואת כל הכלים שלו בבת אחת</td></tr>
+        <tr><td>"תסיר את <bdi>Agent Reach</bdi>"</td><td>קודם מראה מה יימחק, ומוחק רק אחרי שאתם מאשרים</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>שימו לב</h2>
+  <div class="warn">
+    <ul>
+      <li><strong>קורא בלבד.</strong> לפי היוצר, הוא לא מפרסם, לא מגיב, לא עושה לייק ולא שולח הודעות.</li>
+      <li><strong>חשבון משני.</strong> הוא לא מבקש סיסמה. באתרים שדורשים התחברות הוא מעתיק את ההתחברות מהכרום, ולרוב זה החשבון הראשי. היוצר עצמו ממליץ לעבור לחשבון משני, כי פלטפורמות עלולות להגביל חשבונות שמשמשים לאוטומציה.</li>
+      <li><strong>פייסבוק ואינסטגרם ניסיוניים.</strong> לא עם החשבון הראשי של העסק.</li>
+      <li><strong>מפתחות לא מדביקים בצ'אט.</strong> אם צריך מפתח (למשל לתמלול), מכניסים אותו בטרמינל, כמו שהיוצר מסביר.</li>
+      <li><strong>קריאת דפים עוברת דרך שירות חיצוני</strong> (<bdi>Jina Reader</bdi>, ואם הוא נכשל <bdi>Exa</bdi>). לא שולחים דרכו דפים פרטיים.</li>
+    </ul>
+  </div>
+
+  <h2>מה בדקתי, ומה לא</h2>
+  <div class="tip">
+    <p><strong>✅ בדקתי (25.11.2026):</strong> את קובץ הסקיל שמותקן אצלי. שבעה קבצי טקסט, בלי קוד, ואין בהם הוראה ששולחת מידע החוצה. הקישורים בהם: האתרים עצמם, שירות קריאת הדפים, דף העדכון של היוצר בגיטהאב, ודף מפתחות של <bdi>Groq</bdi>.</p>
+    <p style="margin:0"><strong>❌ לא בדקתי:</strong> את הקוד שמותקן יחד איתו (חבילת פייתון), ומה קורה בפועל בפייסבוק ובאינסטגרם.</p>
+  </div>
+
+  <h2>מקורות</h2>
+  <ul class="sources">
+    <li>דף הפרויקט: <a class="ltr" href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">github.com/Panniantong/Agent-Reach</a></li>
+    <li>ההסבר באנגלית (טבלת המקומות, ההתקנה והבטיחות): <a class="ltr" href="https://github.com/Panniantong/Agent-Reach/blob/main/docs/README_en.md" target="_blank" rel="noopener">docs/README_en.md</a></li>
+    <li>הכלי לא שלי, ואין לי קשר ליוצר. ההמלצה והבדיקה שלי.</li>
+  </ul>
+
+  <aside class="cta">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#boti-head"/></svg>
+    <div>
+      <h2>רוצה כזה לעסק שלך?</h2>
+      <p>אני מטמיע AI בעסקים ובארגונים: לומד איך העסק עובד, ממליץ מה כדאי להכניס, ובונה סוכנים כשצריך. בשיחת היכרות של 20 דקות, בחינם, נבדוק איפה AI יכול לחסוך לך זמן.</p>
+      <div class="btns">
+        <a class="btn btn-wa" data-contact="whatsapp" href="../index.html#call"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>כתבו לי ל-WhatsApp</a>
+        <a class="btn btn-ghost" href="../index.html">מה אני עושה</a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/botik.agent/" target="_blank" rel="noopener">לעקוב באינסטגרם</a>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<footer>בוטיק · כל יום כלי AI אחד · <a href="../index.html">מי אני</a></footer>
+
+<div class="toast" role="status" aria-live="polite"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="boti-head">
+      <line x1="32" y1="6" x2="32" y2="14" stroke="#5CF2FF" stroke-width="2.5"/>
+      <circle cx="32" cy="6" r="4.5" fill="#FFD23F"/>
+      <rect x="6" y="14" width="52" height="42" rx="16" fill="#FF6A3D"/>
+      <rect x="12" y="21" width="40" height="28" rx="10" fill="#17122B"/>
+      <path d="M20 34 q4-6 8 0 M36 34 q4-6 8 0" stroke="#5CF2FF" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M27 40 h10 q-5 6 -10 0z" fill="#5CF2FF"/>
+    </g>
+    <g id="wa-icon" fill="currentColor">
+      <path d="M12 2.2A9.7 9.7 0 0 0 3.6 16.8L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.2-.2-.2-.5-.3z"/>
+    </g>
+  </defs>
+</svg>
+
+<script>
+var CONTACT = { wa: "NzE3Mjk3NDQ1Mjc5", message: "אהלן, הגעתי דרך דף הנחיתה של בוטיק. הפנייה שלי: " };
+(function(){
+  document.querySelectorAll('[data-contact="whatsapp"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      window.location.href = 'https://wa.me/' + atob(CONTACT.wa).split('').reverse().join('') + '?text=' + encodeURIComponent(CONTACT.message);
+    });
+  });
+})();
+(function(){
+  var ICON='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+  var toast=document.querySelector('.toast'), t;
+  function say(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(t);t=setTimeout(function(){toast.classList.remove('show')},1800)}
+  function fallback(text){
+    var ta=document.createElement('textarea');
+    ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.top='-1000px';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,text.length);
+    var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+    document.body.removeChild(ta);return ok;
+  }
+  function selectPre(pre){var r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r)}
+  function copy(btn){
+    var pre=btn.closest('.block').querySelector('pre'), text=pre.textContent.replace(/\n$/,'');
+    function done(){btn.classList.add('done');btn.innerHTML=ICON+'הועתק';say('הועתק. עכשיו מדביקים');setTimeout(function(){btn.classList.remove('done');btn.innerHTML=ICON+'העתקה'},2000)}
+    function fail(){selectPre(pre);say('סימנתי את הטקסט. לוחצים עליו ארוכות ובוחרים "העתק"')}
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(text).then(done,function(){fallback(text)?done():fail()});
+    }else{fallback(text)?done():fail()}
+  }
+  document.querySelectorAll('.block').forEach(function(b){
+    var btn=b.querySelector('.copy');btn.innerHTML=ICON+'העתקה';
+    btn.addEventListener('click',function(){copy(btn)});
+  });
+  function openHash(){var d=location.hash&&document.getElementById(location.hash.slice(1));if(d&&d.tagName==='DETAILS'){d.open=true;d.scrollIntoView()}}
+  openHash();window.addEventListener('hashchange',openHash);
+})();
+</script>
+</body>
+</html>
